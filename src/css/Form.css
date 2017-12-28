@@ -1,0 +1,19 @@
+.form{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 30px ;
+    padding: 10px;
+    margin: 5px;
+}
+
+
+.btn{
+    background-color: green;
+    grid-column: 1/3;
+    height: 30px ;
+    width: auto;
+    font-weight: 400;
+    color: aliceblue;
+    font-size: 15px;
+    border-radius: 25px;
+}
