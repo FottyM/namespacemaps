@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import { createTask} from "../actions/markerAction";
+
+// import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox'
 
 class Form extends Component{
   render(){
@@ -19,11 +22,17 @@ class Form extends Component{
 }
 
 const mapStateToProps = (state) => {
-return{}
+  return{
+
+  }
 }
 
 const mapDispacthToProps = (dispatch) => {
-return {}
+  return {
+    createTask(task){
+      dispatch(createTask(task))
+    }
+  }
 }
 
 export default connect(mapDispacthToProps, mapStateToProps)(Form)

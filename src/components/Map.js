@@ -8,9 +8,8 @@ const Map = (props) => {
     return(
         <GoogleMap defaultZoom={10} defaultCenter={{ lat: 59.436961, lng: 24.753575 }} >
             { markers.map ( marker => {
-                const lng = marker.address.location.coordinates[0];
                 const lat = marker.address.location.coordinates[1];
-                console.log(lat,lng)
+                const lng = marker.address.location.coordinates[0];
                 return(
                     <Marker key={marker.id} position={{ lat, lng}} />
                 )
