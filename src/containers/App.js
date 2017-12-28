@@ -11,8 +11,14 @@ class App extends Component {
 
 
   render() {
+
+    const markers = this.props.markers.tasks;
+
     return (<div className="App">
-      <Map containerElement={<div style = {{ height: `800px` }}/>} mapElement={<div style = {{ height: `100%` }}/>} isMarkerShown/>
+      <Map
+          containerElement={<div style = {{ height: `800px` }}/>}
+          mapElement={<div style = {{ height: `100%` }}/>}
+          isMarkerShown markers={markers}/>
       <Form/>
     </div>);
   }
@@ -20,7 +26,7 @@ class App extends Component {
 
 const mapStateToProps = (state)=>{
   return{
-      ...state.markerReducer
+      markers: {...state.markerReducer }
   }
 }
 

@@ -19,11 +19,11 @@ class Form extends Component{
 }
 
 const mapStateToProps = (state) => {
-
+return{}
 }
 
 const mapDispacthToProps = (dispatch) => {
-
+return {}
 }
 
 export default connect(mapDispacthToProps, mapStateToProps)(Form)
