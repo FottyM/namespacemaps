@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../App.css';
 import { connect } from 'react-redux'
-import {fetchAllTasks} from '../actions/markerAction'
+import {fetchAllTasks} from '../actions/taskAction'
 import {Map, Form} from '../components/index'
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
 
 const mapStateToProps = (state)=>{
   return{
-      markers: {...state.markerReducer }
+      markers: {...state.taskReducer }
   }
 }
 

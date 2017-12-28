@@ -6,11 +6,11 @@ import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-import markerReducer from './reducers/markerReducer'
+import taskReducer from './reducers/taskReducer'
 
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(combineReducers({markerReducer}),
+const store = createStore(combineReducers({taskReducer}),
     {},
     applyMiddleware(thunk, logger))
 

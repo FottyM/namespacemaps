@@ -2,7 +2,7 @@ const initialState = {
     tasks: [],
     task: {}
 }
-const markerReducer = (state = initialState, action ) =>{
+const taskReducer = (state = initialState, action ) =>{
     switch (action.type){
         case 'LOAD_MARKERS':
             return {...state, tasks: [...action.payload] }
@@ -17,5 +17,5 @@ const markerReducer = (state = initialState, action ) =>{
     }
 }
 
-export default markerReducer;
+export default taskReducer;
 
