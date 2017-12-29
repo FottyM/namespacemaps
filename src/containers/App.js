@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, {Component} from 'react';
 import '../App.css';
 import { connect } from 'react-redux'
@@ -22,6 +23,11 @@ class App extends Component {
       <Form/>
     </div>);
   }
+}
+
+App.propTypes = {
+  fetchAllTasks: PropTypes.func.isRequired,
+  markers: PropTypes.array.isRequired
 }
 
 const mapStateToProps = (state)=>{

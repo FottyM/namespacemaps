@@ -1,6 +1,11 @@
 const initialState = {
     tasks: [],
-    task: {}
+    task: {
+        address: {
+            raw_address: ''
+        },
+        category: ''
+    }
 }
 const taskReducer = (state = initialState, action ) =>{
     switch (action.type){
@@ -12,6 +17,8 @@ const taskReducer = (state = initialState, action ) =>{
             return {...state}
         case 'ADD_TASK_ERROR':
             return {...state}
+        case 'SET_TASK':
+            return {...state, task: { ...action.payload }}
         default:
             return {...state}
     }
