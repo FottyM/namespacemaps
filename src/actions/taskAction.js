@@ -24,19 +24,20 @@ export const  fetchAllTasks = () =>{
     }
 }
 
-
-const data = {
-    "account": `https://gsmtasks.com/api/tasks/accounts/${ACCOUNT}/`,
-    "category" : "pick_up",
-    "address" :
-        {
-            "raw_address": "Tartu maantee 101, 10112 Tallinn"
-        }
-};
+//
+// const data = {
+//     "account": `https://gsmtasks.com/api/tasks/accounts/${ACCOUNT}/`,
+//     "category" : "pick_up",
+//     "address" :
+//         {
+//             "raw_address": "Tartu maantee 101, 10112 Tallinn"
+//         }
+// };
 
 
 export const createTask = (task) => {
-    task = data;
+    task['account'] = `https://gsmtasks.com/api/tasks/accounts/${ACCOUNT}/`;
+
     return dispatch => {
         axios.post(`https://gsmtasks.com/api/tasks/tasks/?account=${ACCOUNT}`, task, HEADERS)
             .then( res => {

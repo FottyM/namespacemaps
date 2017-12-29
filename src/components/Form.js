@@ -1,41 +1,52 @@
 import PropTypes from 'prop-types'
 import React, {Component} from 'react'
-import { connect } from 'react-redux'
-import { createTask, setTask} from "../actions/taskAction";
+import {connect} from 'react-redux'
+import {createTask, setTask} from "../actions/taskAction";
 import '../css/Form.css'
 
-class Form extends Component{
-  submitForm(e){
-    e.preventDefault();
-    this.props.createTask(null);
-  }
+class Form extends Component {
+    submitForm(e) {
 
-  handleChange(e){
-    console.log(e.target.value)
-  }
+        e.preventDefault();
+        const task = this.props.tasks.task;
+        this.props.createTask(task);
+
+    }
+
+    handleChange(e) {
+
+        let task = this.props.tasks.task;
+        e.target.name === "location" ? task.address.raw_address = e.target.value : task.category = e.target.value
+        return this.props.setTask(task);
+    }
 
 
-  render(){
+    render() {
 
-      let { address, category } = this.props.tasks.task;
-      let { raw_address } = address;
+        let {address, category} = this.props.tasks.task
+        let {raw_address} = address
 
-    return(
-      <div>
-        <h1>Add a Task</h1>
-          <form className="form" onSubmit={(e) => this.submitForm(e)}>
-              <label> Address</label>
-              <input type="text" name="location" onChange={ (e) => this.handleChange(e)} />
-              <label> Category</label>
-                  <select onChange={ e => this.handleChange(e)} >
-                      <option value="pickup" name="pick_up">pick up</option>
-                      <option value="drop_off" name="drop_off">drop off</option>
-                  </select>
-              <input type="submit" className='btn' value="ADD TASK"/>
-          </form>
-      </div>
-    )
-  }
+        return (
+            <div>
+                <h1>Add a Task</h1>
+                <form className="form" onSubmit={(e) => this.submitForm(e)}>
+                    <label htmlFor="location"> Address</label>
+                    <input type="text" name="location" onChange={(e) => this.handleChange(e)} value={raw_address}
+                           required/>
+                    <label> Category</label>
+                    <select onChange={e => this.handleChange(e)} value={category} name="categories" required>
+                        <option value="pick_up" name="pick_up"
+                                selected={() => category === 'pick_up' ? 'selected' : false}>Pick up
+                        </option>
+                        <option value="drop_off" name="drop_off"
+                                selected={() => category === 'drop_off' ? 'selected' : false}>Drop off
+                        </option>
+                    </select>
+                    <input type="submit" className='btn' value="ADD TASK"/>
+                </form>
+            </div>
+        )
+    }
 }
 
 Form.propTypes = {
@@ -45,20 +56,20 @@ Form.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  return{
-    tasks: state.taskReducer
-  }
+    return {
+        tasks: state.taskReducer
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    createTask(task){
-      dispatch(createTask(task))
-    },
-      setTask(task){
-      dispatch(setTask(task))
-      }
-  }
+    return {
+        createTask(task) {
+            dispatch(createTask(task))
+        },
+        setTask(task) {
+            dispatch(setTask(task))
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form)
