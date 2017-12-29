@@ -15,9 +15,7 @@ class App extends Component {
         const callback = () => {
             this.props.refreshTasks(this.props.markers.lastUpdatedTaskTime)
         }
-
         setInterval(callback, 2000)
-        console.log(this.props.markers, 'markers')
     }
 
 

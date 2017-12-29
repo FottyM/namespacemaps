@@ -65,15 +65,19 @@ export const refreshTasks = (lastUpdatedTaskTime) => {
     return dispatch => {
         axios.get(`https://gsmtasks.com/api/scenes/dashboard/?account=${ACCOUNT}&updated_at__gt=${lastUpdatedTaskTime}&ordering=updated_at`, HEADERS)
             .then(res => {
-                    const tasks = res.data.length > 0 ? res.data : [];
-                    const lastUpdatedTaskTime = tasks.length > 0 ? moment.max(lastTaskUpdated(tasks)).format('YYYY-MM-DDThh:mm:ss.SSSSSSZ') : moment().format('YYYY-MM-DDThh:mm:ss.SSSSSSZ') ;
-                    dispatch({
-                        type: 'REFRESH_TASKS',
-                        payload: {
-                            tasks,
-                            lastUpdatedTaskTime
-                        }
-                    })
+                    const tasks = res.data.tasks
+                    const lastUpdatedTaskTime = tasks.length > 0 ? moment.max(lastTaskUpdated(tasks)).format('YYYY-MM-DDThh:mm:ss.SSSSSSZ') : null
+
+                    if(tasks.length > 0){
+
+                        dispatch({
+                            type: 'REFRESH_TASKS',
+                            payload: {
+                                tasks,
+                                lastUpdatedTaskTime
+                            }
+                        })
+                    }
                 }
             ).catch(error => {
                 dispatch({

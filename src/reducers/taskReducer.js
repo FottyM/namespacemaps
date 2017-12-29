@@ -10,8 +10,8 @@ const initialState = {
     lastUpdatedTaskTime: moment().format('YYYY-MM-DDThh:mm:ss.SSSSSSZ')
 }
 
-    // .format('YYYY-MM-DDTHH:mm:ss.SSSSZ')
 const taskReducer = (state = initialState, action ) =>{
+    let { lastUpdatedTaskTime } = state;
     switch (action.type){
         case 'LOAD_TASKS':
             return {...state, tasks: [...action.payload.tasks], lastUpdatedTaskTime: action.payload.lastUpdatedTaskTime }
@@ -27,6 +27,8 @@ const taskReducer = (state = initialState, action ) =>{
         case 'REFRESH_TASKS':
             return {...state, tasks: [...state.tasks,...action.payload.tasks], lastUpdatedTaskTime: action.payload.lastUpdatedTaskTime }
             // return {...state, tasks: [...action.payload.tasks], lastUpdatedTaskTime: action.payload.lastUpdatedTaskTime }
+        case 'REFRESH_TASKS_ERROR':
+            return {...state}
         default:
             return {...state}
     }
