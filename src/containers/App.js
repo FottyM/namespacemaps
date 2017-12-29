@@ -2,13 +2,22 @@ import PropTypes from 'prop-types'
 import React, {Component} from 'react';
 import '../App.css';
 import {connect} from 'react-redux'
-import {fetchAllTasks} from '../actions/taskAction'
+import {fetchAllTasks, refreshTasks} from '../actions/taskAction'
 import {Map, Form} from '../components/index'
 
 class App extends Component {
 
+    componentWillMount(){
+        this.props.fetchAllTasks();
+    }
+
     componentDidMount() {
-        this.props.fetchAllTasks()
+        const callback = () => {
+            this.props.refreshTasks(this.props.markers.lastUpdatedTaskTime)
+        }
+
+        setInterval(callback, 2000)
+        console.log(this.props.markers, 'markers')
     }
 
 
@@ -28,7 +37,8 @@ class App extends Component {
 
 App.propTypes = {
     fetchAllTasks: PropTypes.func.isRequired,
-    markers: PropTypes.array.isRequired
+    markers: PropTypes.objectOf(PropTypes.object).isRequired,
+    refreshTasks: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -41,6 +51,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchAllTasks() {
             dispatch(fetchAllTasks())
+        },
+        refreshTasks(lastUpdatedTaskTime){
+            dispatch(refreshTasks(lastUpdatedTaskTime))
         }
     }
 }

@@ -8,8 +8,11 @@ class Form extends Component {
     submitForm(e) {
 
         e.preventDefault();
-        const task = this.props.tasks.task;
+        let task = this.props.tasks.task
         this.props.createTask(task);
+        // task.category = ''
+        // task.address.raw_address = ''
+        // this.props.setTask(task)
 
     }
 
@@ -35,12 +38,8 @@ class Form extends Component {
                            required/>
                     <label> Category</label>
                     <select onChange={e => this.handleChange(e)} value={category} name="categories" required>
-                        <option value="pick_up" name="pick_up"
-                                selected={() => category === 'pick_up' ? 'selected' : false}>Pick up
-                        </option>
-                        <option value="drop_off" name="drop_off"
-                                selected={() => category === 'drop_off' ? 'selected' : false}>Drop off
-                        </option>
+                        <option value="pick_up" name="pick_up">Pick up</option>
+                        <option value="drop_off" name="drop_off">Drop off</option>
                     </select>
                     <input type="submit" className='btn' value="ADD TASK"/>
                 </form>
