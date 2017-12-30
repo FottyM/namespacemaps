@@ -11,7 +11,7 @@ const initialState = {
 }
 
 const taskReducer = (state = initialState, action ) =>{
-    let { lastUpdatedTaskTime } = state;
+    let { lastUpdatedTaskTime , tasks} = state;
     switch (action.type){
         case 'LOAD_TASKS':
             return {...state, tasks: [...action.payload.tasks], lastUpdatedTaskTime: action.payload.lastUpdatedTaskTime }
@@ -25,7 +25,8 @@ const taskReducer = (state = initialState, action ) =>{
         case 'SET_TASK':
             return {...state, task: { ...action.payload }}
         case 'REFRESH_TASKS':
-            return {...state, tasks: [...state.tasks,...action.payload.tasks], lastUpdatedTaskTime: action.payload.lastUpdatedTaskTime }
+            tasks = merge(tasks, action.payload.tasks)
+            return {...state, tasks, lastUpdatedTaskTime: action.payload.lastUpdatedTaskTime }
             // return {...state, tasks: [...action.payload.tasks], lastUpdatedTaskTime: action.payload.lastUpdatedTaskTime }
         case 'REFRESH_TASKS_ERROR':
             return {...state}
@@ -36,3 +37,14 @@ const taskReducer = (state = initialState, action ) =>{
 
 export default taskReducer;
 
+function merge( oldUsers, newUsers) {
+    for (var i = 0; i < oldUsers.length; i++) {
+        for (var j = 0; j < newUsers.length; j++) {
+            if(oldUsers[i].id === newUsers[j].id){
+                oldUsers[i] = newUsers[j]
+                newUsers.splice(j,1)
+            }
+        }
+    }
+    return [...oldUsers, ...newUsers];
+}
