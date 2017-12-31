@@ -1,11 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import {
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  withScriptjs
-} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 const Map = props => {
   const markers = props.markers;

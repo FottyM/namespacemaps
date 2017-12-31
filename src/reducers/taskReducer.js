@@ -46,8 +46,8 @@ const taskReducer = (state = initialState, action) => {
 export default taskReducer;
 
 const merge = (oldUsers, newUsers) => {
-  for (var i = 0; i < oldUsers.length; i++) {
-    for (var j = 0; j < newUsers.length; j++) {
+  for (let i = 0; i < oldUsers.length; i++) {
+    for (let j = 0; j < newUsers.length; j++) {
       if (oldUsers[i].id === newUsers[j].id) {
         oldUsers[i] = newUsers[j];
         newUsers.splice(j, 1);
