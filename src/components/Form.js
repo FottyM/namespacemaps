@@ -10,9 +10,13 @@ class Form extends Component {
         e.preventDefault();
         let task = this.props.tasks.task
         this.props.createTask(task);
-        // task.category = ''
-        // task.address.raw_address = ''
-        // this.props.setTask(task)
+
+        const callback = () => {
+            task.address.raw_address = ''
+            this.props.setTask(task)
+        }
+
+        setTimeout(callback, 1000)
 
     }
 
@@ -38,8 +42,8 @@ class Form extends Component {
                            required/>
                     <label> Category</label>
                     <select onChange={e => this.handleChange(e)} value={category} name="categories" required>
-                        <option value="pick_up" name="pick_up">Pick up</option>
-                        <option value="drop_off" name="drop_off">Drop off</option>
+                        <option value="pick_up" name="pick_up" >Pick up</option>
+                        <option value="drop_off" name="drop_off" selected>Drop off</option>
                     </select>
                     <input type="submit" className='btn' value="ADD TASK"/>
                 </form>

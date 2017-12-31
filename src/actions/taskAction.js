@@ -25,8 +25,6 @@ export const fetchAllTasks = () => {
                     payload: error.response
                 })
             })
-
-
     }
 }
 
@@ -67,9 +65,7 @@ export const refreshTasks = (lastUpdatedTaskTime) => {
             .then(res => {
                     const tasks = res.data.tasks
                     const lastUpdatedTaskTime = tasks.length > 0 ? moment.max(lastTaskUpdated(tasks)).format('YYYY-MM-DDThh:mm:ss.SSSSSSZ') : null
-
                     if(tasks.length > 0){
-
                         dispatch({
                             type: 'REFRESH_TASKS',
                             payload: {

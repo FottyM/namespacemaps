@@ -7,7 +7,7 @@ const Map = (props) => {
     const markers = props.markers;
 
     return(
-        <GoogleMap defaultZoom={8} defaultCenter={{ lat: 59.436961, lng: 24.753575 }} >
+        <GoogleMap defaultZoom={6} defaultCenter={{ lat: 59.436961, lng: 24.753575 }} >
             { markers.map ( marker => {
                 const lat = marker.address.location.coordinates[1];
                 const lng = marker.address.location.coordinates[0];

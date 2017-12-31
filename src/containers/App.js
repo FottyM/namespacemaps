@@ -7,7 +7,7 @@ import {Map, Form} from '../components/index'
 
 class App extends Component {
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.fetchAllTasks();
     }
 
@@ -25,7 +25,7 @@ class App extends Component {
 
         return (<div className="App">
             <Map
-                containerElement={<div style={{height: `800px`}}/>}
+                containerElement={<div style={{height: `100%`}}/>}
                 mapElement={<div style={{height: `100%`}}/>}
                 isMarkerShown markers={markers}/>
             <Form/>
@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchAllTasks() {
             dispatch(fetchAllTasks())
         },
-        refreshTasks(lastUpdatedTaskTime){
+        refreshTasks(lastUpdatedTaskTime) {
             dispatch(refreshTasks(lastUpdatedTaskTime))
         }
     }
