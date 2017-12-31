@@ -1,7 +1,4 @@
-import Map from './Map'
-import Form from './Form'
+import Map from './Map';
+import Form from './Form';
 
-export {
-  Map,
-  Form
-}
+export { Map, Form };
